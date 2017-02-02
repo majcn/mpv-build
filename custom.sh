@@ -63,9 +63,8 @@ make install
 
 # fdkaac
 cd $BUILD/custom_majcn
-wget -O fdk-aac.tar.gz https://github.com/mstorsjo/fdk-aac/tarball/master
-tar xzvf fdk-aac.tar.gz
-cd mstorsjo-fdk-aac*
+git clone https://github.com/mstorsjo/fdk-aac
+cd fdk-aac
 ./autogen.sh --prefix="$BUILD/build_libs" --libdir="$BUILD/build_libs/lib" --enable-static --disable-shared $OPTIONS
 ./configure  --prefix="$BUILD/build_libs" --libdir="$BUILD/build_libs/lib" --enable-static --disable-shared $OPTIONS
 make
@@ -73,9 +72,8 @@ make install
 
 # opus
 cd $BUILD/custom_majcn
-wget http://downloads.xiph.org/releases/opus/opus-1.1.4.tar.gz
-tar xzvf opus-1.1.4.tar.gz
-cd opus-1.1.4
+git clone https://github.com/xiph/opus
+cd opus
 ./autogen.sh --prefix="$BUILD/build_libs" --libdir="$BUILD/build_libs/lib" --enable-static --disable-shared $OPTIONS
 ./configure  --prefix="$BUILD/build_libs" --libdir="$BUILD/build_libs/lib" --enable-static --disable-shared $OPTIONS
 make
