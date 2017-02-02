@@ -16,7 +16,6 @@ cat <<EOT > $BUILD/ffmpeg_options
 --enable-libvorbis
 --enable-libvpx
 --enable-libx264
---enable-libx265
 --enable-nonfree
 --enable-gnutls
 --disable-debug
@@ -47,17 +46,6 @@ wget http://download.videolan.org/pub/x264/snapshots/last_x264.tar.bz2
 tar xjvf last_x264.tar.bz2
 cd x264-snapshot*
 ./configure --prefix="$BUILD/build_libs" --libdir="$BUILD/build_libs/lib" --enable-static --disable-shared $OPTIONS
-make
-make install
-
-# x265
-cd $BUILD/custom_majcn
-hg clone https://bitbucket.org/multicoreware/x265
-cd x265
-# https://bitbucket.org/multicoreware/x265/issues/289
-sed -i 's/set(ARM_ARGS -mcpu=native -mfloat-abi=hard -mfpu=neon -marm -fPIC)/set(ARM_ARGS -mcpu=cortex-a53 -mfloat-abi=hard -mfpu=neon-vfpv4 -marm -fPIC)/' source/CMakeLists.txt 
-cd build/linux
-cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$BUILD/build_libs" -DENABLE_SHARED:bool=off ../../source
 make
 make install
 
