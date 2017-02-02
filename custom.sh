@@ -55,7 +55,7 @@ cd $BUILD/custom_majcn
 hg clone https://bitbucket.org/multicoreware/x265
 cd x265
 # https://bitbucket.org/multicoreware/x265/issues/289
-sed -i .bak 's/set(ARM_ARGS -mcpu=native -mfloat-abi=hard -mfpu=neon -marm -fPIC)/set(ARM_ARGS -mcpu=cortex-a53 -mfloat-abi=hard -mfpu=neon-vfpv4 -marm -fPIC)/' source/CMakeLists.txt 
+sed -i 's/set(ARM_ARGS -mcpu=native -mfloat-abi=hard -mfpu=neon -marm -fPIC)/set(ARM_ARGS -mcpu=cortex-a53 -mfloat-abi=hard -mfpu=neon-vfpv4 -marm -fPIC)/' source/CMakeLists.txt 
 cd build/linux
 cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$BUILD/build_libs" -DENABLE_SHARED:bool=off ../../source
 make
